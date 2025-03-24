@@ -1,4 +1,4 @@
-# Stock Knowledge Q&A System
+# Stock VN Q&A System
 
 ## Overview
 
