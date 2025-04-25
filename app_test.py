@@ -846,8 +846,59 @@ if 'view_history' not in st.session_state:
     st.session_state.view_history = False
 
 # Streamlit UI
-st.title("🇻🇳 Vietnam Stock Market Q&A Bot")
-st.markdown("Hỏi đáp thông tin về chứng khoán Việt Nam")
+# Thay thế phần tiêu đề dự án hiện tại
+st.markdown("""
+<div style="
+    background: linear-gradient(120deg, #1a2980, #26d0ce); 
+    padding: 8px 15px; 
+    border-radius: 12px; 
+    text-align: center; 
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+">
+    <div style="
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+            to right,
+            rgba(255,255,255,0) 0%,
+            rgba(255,255,255,0.3) 50%,
+            rgba(255,255,255,0) 100%
+        );
+        transform: rotate(30deg);
+        animation: shine 3s infinite;
+    "></div>
+    <h1 style="
+        color: white; 
+        font-size: 32px; 
+        font-weight: bold; 
+        margin: 5px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    ">
+        🇻🇳 VIETNAM STOCK MARKET Q&A 📈
+    </h1>
+    <p style="
+        color: rgba(255,255,255,0.9); 
+        font-size: 16px; 
+        margin: 0px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    ">
+        Hỏi đáp thông tin về chứng khoán Việt Nam
+    </p>
+</div>
+<style>
+@keyframes shine {
+    0% {transform: translateX(-100%) rotate(30deg);}
+    100% {transform: translateX(100%) rotate(30deg);}
+}
+</style>
+""", unsafe_allow_html=True)
 
 # Initialize session state for chat history
 if 'messages' not in st.session_state:
@@ -1040,10 +1091,27 @@ if st.session_state.view_history:
         with col2:
             st.markdown(
                 """
-                <div style="background-color:gray; padding:5px; border-radius:8px; text-align:center;">
-                    <h1 style="color:white; font-size:22px; margin:0; padding:2px;">
+                <div style="
+                    background: linear-gradient(135deg, #1e3c72, #2a5298); 
+                    padding: 8px 12px; 
+                    border-radius: 8px; 
+                    text-align: center;
+                    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                    border: 1px solid #4a6ea9;
+                    margin-bottom: 10px;
+                    margin-top: 5px;
+                ">
+                    <h2 style="
+                        color: white; 
+                        font-size: 26px; 
+                        margin: 0; 
+                        padding: 5px 0;
+                        letter-spacing: 1px;
+                        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+                        line-height: 1.4;
+                    ">
                         📚 LỊCH SỬ HỘI THOẠI 💬
-                    </h1>
+                    </h2>
                 </div>
                 """, 
                 unsafe_allow_html=True
