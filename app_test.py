@@ -530,18 +530,26 @@ def generate_response(query, data, explanation):
 
 # Hàm để xóa lịch sử - di chuyển định nghĩa lên đầu để có thể gọi sau này
 def clear_history():
-    """Xóa nội dung lịch sử trong file history.json mà không xóa file"""
+    """Xóa nội dung lịch sử trong file history.json và xóa lịch sử trò chuyện đang lưu trong session"""
+    # 1. Xóa nội dung file history.json
     history_file = "history.json"
     if os.path.exists(history_file):
-        # Thay vì xóa file, ghi đè với một mảng trống
         with open(history_file, "w", encoding="utf-8") as f:
             json.dump([], f, ensure_ascii=False)
-        st.success("Đã xóa lịch sử hội thoại.")
     else:
-        # Nếu file chưa tồn tại, tạo file mới với mảng trống
         with open(history_file, "w", encoding="utf-8") as f:
             json.dump([], f, ensure_ascii=False)
-        st.success("Đã tạo file lịch sử mới.")
+    
+    # 2. Xóa lịch sử trò chuyện trong session_state
+    if 'messages' in st.session_state:
+        st.session_state.messages = []
+    
+    # 3. Hiển thị thông báo thành công
+    st.success("Đã xóa lịch sử hội thoại.")
+    
+    # 4. Đặt lại session_state.view_history thành False để đóng phần hiển thị lịch sử
+    if 'view_history' in st.session_state:
+        st.session_state.view_history = False
 
 def close_history_callback():
     st.session_state.view_history = False
@@ -1069,16 +1077,16 @@ with st.sidebar:
     
     with col1:
         # Thay đổi nút thành toggle và điều chỉnh nhãn theo trạng thái
-        button_label = "Ẩn lịch sử" if st.session_state.view_history else "Xem lịch sử"
-        if st.button(button_label, key="view_history_btn"):
-            # Đảo ngược trạng thái khi nhấn nút
-            st.session_state.view_history = not st.session_state.view_history
+        if st.button("Xem lịch sử", key="view_history_btn"):
+            # Khi nhấn nút, hiển thị lịch sử
+            st.session_state.view_history = True
+            # Cần rerun để hiển thị lịch sử ngay lập tức
+            st.rerun()
     
     with col2:
         if st.button("Xóa lịch sử", key="clear_history_btn"):
             clear_history()
 
-# Phần hiển thị lịch sử nếu được yêu cầu
 # Phần hiển thị lịch sử nếu được yêu cầu
 if st.session_state.view_history:
     # Tạo phần tiêu đề đẹp và nổi bật hơn
