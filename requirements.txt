@@ -1,0 +1,11 @@
+streamlit
+pandas
+matplotlib
+openai
+python-dotenv
+vnstock
+scikit-learn
+tensorflow
+xgboost
+numpy
+statsmodels

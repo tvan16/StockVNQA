@@ -1,0 +1,98 @@
+{
+    "top_r2": [
+        "DTL",
+        "TSC",
+        "TTF",
+        "VC2",
+        "S27",
+        "TBX",
+        "HTL",
+        "SRA",
+        "KMR",
+        "CVN"
+    ],
+    "bottom_r2": [
+        "TMB",
+        "DDG",
+        "AAT",
+        "RCD",
+        "GH3",
+        "BSA",
+        "THM",
+        "HTR",
+        "FRT",
+        "SBG"
+    ],
+    "highest_rise": [
+        "AGM",
+        "LUT",
+        "MTC",
+        "LCS",
+        "IBC",
+        "QBS",
+        "POM",
+        "SAL",
+        "L61",
+        "TKG"
+    ],
+    "highest_fall": [
+        "PTG",
+        "VE4",
+        "HGM",
+        "NAC",
+        "TFC",
+        "VLP",
+        "DHT",
+        "AGX",
+        "IME",
+        "VC6"
+    ],
+    "highest_rmse": [
+        "HGM",
+        "KSV",
+        "VE4",
+        "CMF",
+        "FRT",
+        "WCS",
+        "MCH",
+        "PDN",
+        "TOS",
+        "AGX"
+    ],
+    "lowest_rmse": [
+        "UMC",
+        "FCC",
+        "DPS",
+        "V11",
+        "ACM",
+        "NHP",
+        "HKB",
+        "CAD",
+        "G20",
+        "PVH"
+    ],
+    "lowest_dir_accuracy": [
+        "FCC",
+        "BHG",
+        "CDG",
+        "UMC",
+        "TQN",
+        "DKC",
+        "SDX",
+        "MPT",
+        "FGL",
+        "RCD"
+    ],
+    "highest_dir_accuracy": [
+        "MEF",
+        "NQT",
+        "PTG",
+        "MTB",
+        "NAC",
+        "MND",
+        "HLT",
+        "QNU",
+        "VXP",
+        "GH3"
+    ]
+}
