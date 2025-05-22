@@ -51,7 +51,7 @@ def get_function_schemas():
                         },
                         "symbol": {
                             "type": "string",
-                            "description": "Mã cổ phiếu cần truy vấn, ví dụ ACB, VCB, HPG"
+                            "description": "mã cổ phiếu cần truy vấn, nếu điền tên công ty thì tự động truy vấn mã cổ phiếu tương ứng"
                         },
                         "resolution": {
                             "type": "string",
@@ -108,7 +108,7 @@ def get_function_schemas():
                         },
                         "symbol": {
                             "type": "string",
-                            "description": "Mã cổ phiếu cần truy vấn"
+                            "description": "mã cổ phiếu cần truy vấn, nếu điền tên công ty thì tự động truy vấn mã cổ phiếu tương ứng"
                         },
                         "period": {
                             "type": "string",
@@ -124,7 +124,7 @@ def get_function_schemas():
             "type": "function",
             "function": {
                 "name": "query_trading",
-                "description": "Lấy thông tin giao dịch cổ phiếu và dữ liệu bảng giá (price board) của nhiều cổ phiếu",
+                "description": "Lấy thông tin giao dịch cổ phiếu và dữ liệu bảng giá (price board) của một nhiều cổ phiếu, dùng để so sánh giá cổ phiếu, hoặc để liệt kê",
                 "parameters": {
                     "type": "object",
                     "properties": {
@@ -138,7 +138,7 @@ def get_function_schemas():
                             "items": {
                                 "type": "string"
                             },
-                            "description": "Danh sách mã cổ phiếu cần truy vấn"
+                            "description": "Danh sách mã cổ phiếu cần truy vấn, nếu điền tên công ty thì tự động truy vấn mã cổ phiếu tương ứng"
                         }
                     },
                     "required": ["function_name", "symbols"]
