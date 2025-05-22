@@ -47,7 +47,7 @@ def get_function_schemas():
                         "function_name": {
                             "type": "string",
                             "enum": ["history", "intraday", "price_depth"],
-                            "description": "Hàm cụ thể cần gọi từ lớp Quote, với history là dữ liệu lịch sử, intraday là dữ liệu trong ngày và price_depth là bảng giá và khối lượng giao dịch"
+                            "description": "Hàm cụ thể cần gọi từ lớp Quote, với history là dữ liệu lịch sử, intraday là dữ liệu trong ngày và price_depth là khối lượng giao dịch theo bước giá"
                         },
                         "symbol": {
                             "type": "string",
@@ -124,14 +124,14 @@ def get_function_schemas():
             "type": "function",
             "function": {
                 "name": "query_trading",
-                "description": "Lấy thông tin giao dịch cổ phiếu và dữ liệu bảng giá",
+                "description": "Lấy thông tin giao dịch cổ phiếu và dữ liệu bảng giá (price board) của nhiều cổ phiếu",
                 "parameters": {
                     "type": "object",
                     "properties": {
                         "function_name": {
                             "type": "string",
                             "enum": ["price_board"],
-                            "description": "Hàm cụ thể cần gọi từ lớp Trading"
+                            "description": "Hàm cụ thể cần gọi từ lớp Trading, với price_board là bảng giá của một hoặc nhiều cổ phiếu"
                         },
                         "symbols": {
                             "type": "array",

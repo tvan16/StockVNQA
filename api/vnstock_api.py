@@ -138,21 +138,49 @@ def get_finance_data(symbol, function_name, period="quarter" or "year", **kwargs
     
 
 def get_trading_data(function_name, symbols, **kwargs):
-    """Thực thi các hàm từ lớp Trading"""
-    if not symbols:
-        return None, "Danh sách symbols là bắt buộc cho hàm Trading."
+    """Thực thi các hàm từ lớp Trading
+    
+    Args:
+        function_name: Tên hàm cần gọi (ví dụ: price_board)
+        symbols: Mã chứng khoán hoặc danh sách mã cần truy vấn
+        **kwargs: Các tham số bổ sung cần truyền cho hàm
         
-    trading = Trading()
-    
-    if not hasattr(trading, function_name):
-        return None, f"Không tìm thấy hàm {function_name} trong lớp Trading."
-    
-    func = getattr(trading, function_name)
-    
+    Returns:
+        tuple: (kết quả, thông báo lỗi nếu có)
+    """
     try:
-        result = func(symbols_list=symbols, **kwargs)
-        return result, None
+        # Kiểm tra tham số đầu vào
+        if not symbols:
+            return None, "Tham số symbols là bắt buộc"
+            
+        # Xử lý symbols là một chuỗi hoặc danh sách
+        if isinstance(symbols, list):
+            if not symbols:  # Kiểm tra nếu là list rỗng
+                return None, "Danh sách symbols không được rỗng"
+            symbol_input = symbols[0]
+            symbols_list = symbols
+        else:
+            symbol_input = symbols
+            symbols_list = [symbols]
+        
+        # Khởi tạo đối tượng stock
+        try:
+            stock = Vnstock().stock(symbol=symbol_input or "VN30F1M")
+        except Exception as e:
+            return None, f"Lỗi khi khởi tạo đối tượng Vnstock: {str(e)}"
+        
+        # Gọi đến các phương thức khác nhau dựa trên function_name
+        print(f"Đang gọi hàm {function_name} với các tham số: symbols={symbols_list}, {kwargs}")
+        
+        if function_name == "price_board":
+            result = stock.trading.price_board(symbols_list=symbols_list)
+            return result, None
+        else:
+            return None, f"Hàm {function_name} không được hỗ trợ trong Trading API"
+            
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return None, f"Lỗi khi gọi {function_name}: {str(e)}"
 
 def get_screener_data(function_name, **kwargs):
