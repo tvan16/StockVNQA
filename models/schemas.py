@@ -113,10 +113,10 @@ def get_function_schemas():
                         "period": {
                             "type": "string",
                             "enum": ["quarter", "year"],
-                            "description": "Kỳ báo cáo tài chính"
+                            "description": "Kỳ báo cáo tài chính, năm gần nhất, hoặc quý gần nhất"
                         }
                     },
-                    "required": ["function_name", "symbol"]
+                    "required": ["function_name", "symbol", "period"]
                 }
             }
         },

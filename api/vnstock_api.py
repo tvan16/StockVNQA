@@ -96,30 +96,46 @@ def get_company_data(symbol, function_name, **kwargs):
     elif function_name == "trading_stats":
         result = company.trading_stats()
         return result, None
-    
-    # try:
-    #     result = func(**kwargs)
-    #     return result, None
-    # except Exception as e:
-    #     return None, f"Lỗi khi gọi {function_name}: {str(e)}"
 
-def get_finance_data(symbol, function_name, period="quarter", **kwargs):
+
+def get_finance_data(symbol, function_name, period="quarter" or "year", **kwargs):
     """Thực thi các hàm từ lớp Finance"""
-    if not symbol:
-        return None, "Symbol là bắt buộc cho hàm Finance."
-        
-    finance = Finance(symbol=symbol, period=period)
+    kwargs["symbol"] = symbol if symbol else kwargs.get("symbol", "VN30F1M")
     
-    if not hasattr(finance, function_name):
-        return None, f"Không tìm thấy hàm {function_name} trong lớp Finance."
-    
-    func = getattr(finance, function_name)
-    
-    try:
-        result = func(**kwargs)
+    stock = Vnstock().stock(symbol = kwargs.get("symbol", "VN30F1M"))
+
+    print(f"đang gọi hàm {function_name} với các tham số: {kwargs}")
+
+    if function_name == "balance_sheet":
+        result = stock.finance.balance_sheet(
+            symbol=kwargs.get("symbol"),
+            period=kwargs.get("period", "quarter"),
+            lang='en',
+            dropna=True,
+        )
         return result, None
-    except Exception as e:
-        return None, f"Lỗi khi gọi {function_name}: {str(e)}"
+    elif function_name == "income_statement":
+        result = stock.finance.income_statement(
+            period=kwargs.get("period", "quarter"),
+            lang='en',
+            dropna=True,
+        )
+        return result, None
+    elif function_name == "cash_flow":
+        result = stock.finance.cash_flow(
+            period=kwargs.get("period", "quarter"),
+            lang='en',
+            dropna=True,
+        )
+        return result, None
+    elif function_name == "ratio":
+        result = stock.finance.ratio(
+            period=kwargs.get("period", "quarter"),
+            lang='en',
+            dropna=True,
+        )
+        return result, None
+    
 
 def get_trading_data(function_name, symbols, **kwargs):
     """Thực thi các hàm từ lớp Trading"""
