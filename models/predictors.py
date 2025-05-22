@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score, mean_absolute_error
 from datetime import datetime, timedelta
-from vnstock import VnStock
+from vnstock import Vnstock
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.layers import Dropout, BatchNormalization

@@ -5,12 +5,6 @@ from datetime import datetime, timedelta
 import streamlit as st
 
 from api.vnstock_api import get_historical_data_for_prediction
-from models.predictors import StockPredictor
-
-@st.cache_resource
-def get_stock_predictor():
-    """Lazy loading của StockPredictor để tái sử dụng giữa các lần gọi"""
-    return StockPredictor()
 
 def execute_prediction_function(arguments):
     """Thực hiện dự đoán giá cổ phiếu"""
