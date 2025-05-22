@@ -180,13 +180,13 @@ def get_function_schemas():
                             "enum": ["lstm", "xgboost"],
                             "description": "Loại mô hình dự đoán sẽ sử dụng"
                         },
-                        "prediction_days": {
-                            "type": "integer",
-                            "description": "Số ngày cần dự đoán trong tương lai",
-                            "default": 30
+                        "prediction_type":{
+                            "type": "string",
+                            "enum": ["price", "trend"],
+                            "description": "Loại dự đoán, có thể là giá hoặc xu hướng"                      
                         }
                     },
-                    "required": ["symbol", "model_type"]
+                    "required": ["symbol", "model_type", "prediction_type"]
                 }
             }
         }
