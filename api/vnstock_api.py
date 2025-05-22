@@ -4,11 +4,6 @@ from datetime import datetime, timedelta
 def get_listing_data(function_name, **kwargs):
     """Thực thi các hàm từ lớp Listing"""
     stock = Vnstock().stock(symbol = kwargs.get("symbol", "VN30F1M"))
-    # list = Listing()
-    # if not hasattr(list, function_name):
-    #     return None, f"Không tìm thấy hàm {function_name} trong lớp Listing."
-    
-    # func = getattr(list,function_name)
 
     print(f"Đang gọi hàm {function_name} với các tham số: {kwargs}")
     if function_name == "all_symbols":
@@ -32,11 +27,6 @@ def get_listing_data(function_name, **kwargs):
     
     return None, f"Hàm {function_name} không được hỗ trợ trong lớp Listing."
     
-    # try:
-    #     result = func(**kwargs)
-    #     return result, None
-    # except Exception as e:
-    #     return None, f"Lỗi khi gọi {function_name}: {str(e)}"
 
 
 
@@ -48,15 +38,6 @@ def get_quote_data(symbol, function_name, **kwargs):
 
     print(f"đang gọi hàm {function_name} với các tham số: {kwargs}")
 
-    # # if not symbol:
-    # #     return None, "Symbol là bắt buộc cho hàm Quote."
-    
-    # # if not hasattr(quote, function_name):
-    # #     return None, f"Không tìm thấy hàm {function_name} trong lớp Quote."
-    
-    # func = getattr(quote, function_name)
-
-    # Nếu là history và không có thời gian, thiết lập mặc định
     if function_name == "history":
         end_date = datetime.today()
         if "from_date" not in kwargs:
@@ -80,26 +61,14 @@ def get_quote_data(symbol, function_name, **kwargs):
     elif function_name == "price_depth":
         result = stock.quote.price_depth(kwargs.get("symbol"))
         return result, None
-    
-    # try:
-    #     result = func(**kwargs)
-    #     return result, None
-    # except Exception as e:
-    #     return None, f"Lỗi khi gọi {function_name}: {str(e)}"
+
 
 def get_company_data(symbol, function_name, **kwargs):
     """Thực thi các hàm từ lớp Company"""
     kwargs["symbol"] = symbol if symbol else kwargs.get("symbol", "VN30F1M")
-    company = Vnstock().stock(symbol = kwargs.get("symbol", "VN30F1M")).company
-    # if not symbol:
-    #     return None, "Symbol là bắt buộc cho hàm Company."
-        
-    # company = Company(symbol)
-    
-    # if not hasattr(company, function_name):
-    #     return None, f"Không tìm thấy hàm {function_name} trong lớp Company."
-    
-    # func = getattr(company, function_name)
+    # company = Vnstock().stock(symbol = kwargs.get("symbol", "VN30F1M")).company
+    from vnstock.explorer.vci import Company
+    company = Company(symbol=kwargs.get("symbol", "VN30F1M"))
 
     print(f"đang gọi hàm {function_name} với các tham số: {kwargs}")
 
@@ -121,10 +90,12 @@ def get_company_data(symbol, function_name, **kwargs):
     elif function_name == "events":
         result = company.events()
         return result, None
-    elif function_name == "insider_deals":
-        result = company.insider_deals()
+    elif function_name == "ratio_summary":
+        result = company.ratio_summary()
         return result, None
-
+    elif function_name == "trading_stats":
+        result = company.trading_stats()
+        return result, None
     
     # try:
     #     result = func(**kwargs)

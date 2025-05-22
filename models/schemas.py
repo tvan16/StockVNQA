@@ -81,7 +81,7 @@ def get_function_schemas():
                     "properties": {
                         "function_name": {
                             "type": "string",
-                            "enum": ["profile", "officers", "shareholders", "subsidiaries", "overview", "events", "dividends", "news", "insider_deals"],
+                            "enum": ["officers", "shareholders", "subsidiaries", "overview", "events", "news", "ratio_summary", "trading_stats"],
                             "description": "Hàm cụ thể cần gọi từ lớp Company"
                         },
                         "symbol": {
