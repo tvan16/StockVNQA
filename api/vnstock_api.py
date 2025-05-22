@@ -89,21 +89,48 @@ def get_quote_data(symbol, function_name, **kwargs):
 
 def get_company_data(symbol, function_name, **kwargs):
     """Thực thi các hàm từ lớp Company"""
-    if not symbol:
-        return None, "Symbol là bắt buộc cho hàm Company."
+    kwargs["symbol"] = symbol if symbol else kwargs.get("symbol", "VN30F1M")
+    company = Vnstock().stock(symbol = kwargs.get("symbol", "VN30F1M")).company
+    # if not symbol:
+    #     return None, "Symbol là bắt buộc cho hàm Company."
         
-    company = Company(symbol)
+    # company = Company(symbol)
     
-    if not hasattr(company, function_name):
-        return None, f"Không tìm thấy hàm {function_name} trong lớp Company."
+    # if not hasattr(company, function_name):
+    #     return None, f"Không tìm thấy hàm {function_name} trong lớp Company."
     
-    func = getattr(company, function_name)
-    
-    try:
-        result = func(**kwargs)
+    # func = getattr(company, function_name)
+
+    print(f"đang gọi hàm {function_name} với các tham số: {kwargs}")
+
+    if function_name == "overview":
+        result = company.overview()
         return result, None
-    except Exception as e:
-        return None, f"Lỗi khi gọi {function_name}: {str(e)}"
+    elif function_name == "shareholders":
+        result = company.shareholders()
+        return result, None
+    elif function_name == "subsidiaries":
+        result = company.subsidiaries()
+        return result, None
+    elif function_name == "officers":
+        result = company.officers(filter_by=kwargs.get("filter_by", "working"))
+        return result, None
+    elif function_name == "news":
+        result = company.news()
+        return result, None
+    elif function_name == "events":
+        result = company.events()
+        return result, None
+    elif function_name == "insider_deals":
+        result = company.insider_deals()
+        return result, None
+
+    
+    # try:
+    #     result = func(**kwargs)
+    #     return result, None
+    # except Exception as e:
+    #     return None, f"Lỗi khi gọi {function_name}: {str(e)}"
 
 def get_finance_data(symbol, function_name, period="quarter", **kwargs):
     """Thực thi các hàm từ lớp Finance"""

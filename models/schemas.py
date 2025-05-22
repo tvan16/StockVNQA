@@ -86,7 +86,7 @@ def get_function_schemas():
                         },
                         "symbol": {
                             "type": "string", 
-                            "description": "Mã cổ phiếu cần truy vấn"
+                            "description": "Mã công ty hoặc cổ phiếu cần truy vấn"
                         }
                     },
                     "required": ["function_name", "symbol"]
