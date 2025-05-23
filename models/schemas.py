@@ -51,7 +51,7 @@ def get_function_schemas():
                         },
                         "symbol": {
                             "type": "string",
-                            "description": "mã cổ phiếu cần truy vấn, nếu điền tên công ty thì tự động truy vấn mã cổ phiếu tương ứng"
+                            "description": "mã cổ phiếu cần truy vấn, nếu là tên công ty (hoặc bất cứ thông tin gì liên quan) thì tự động truy vấn mã cổ phiếu tương ứng để điền"
                         },
                         "resolution": {
                             "type": "string",
@@ -175,18 +175,13 @@ def get_function_schemas():
                             "type": "string",
                             "description": "Mã cổ phiếu cần dự đoán"
                         },
-                        "model_type": {
-                            "type": "string",
-                            "enum": ["lstm", "xgboost"],
-                            "description": "Loại mô hình dự đoán sẽ sử dụng"
-                        },
                         "prediction_type":{
                             "type": "string",
                             "enum": ["price", "trend"],
                             "description": "Loại dự đoán, có thể là giá hoặc xu hướng"                      
                         }
                     },
-                    "required": ["symbol", "model_type", "prediction_type"]
+                    "required": ["symbol", "prediction_type"]
                 }
             }
         }

@@ -4,77 +4,58 @@ import numpy as np
 from datetime import datetime, timedelta
 import streamlit as st
 
-from api.vnstock_api import get_historical_data_for_prediction
+from models.predictors import train_with_XGBoost, train_LSTM
 
 def execute_prediction_function(arguments):
     """Thực hiện dự đoán giá cổ phiếu"""
     symbol = arguments.get("symbol")
-    model_type = arguments.get("model_type")
-    prediction_days = arguments.get("prediction_days", 30)
+    prediction_type = arguments.get("prediction_type", "price")
     
+    print(f"hàm dự đoán được gọi với các tham số: {arguments}")
     if not symbol:
         return None, "Cần cung cấp mã cổ phiếu để dự đoán."
     
-    # Kiểm tra loại mô hình
-    if model_type not in ["lstm", "xgboost"]:
-        return None, f"Mô hình {model_type} không được hỗ trợ. Các mô hình hỗ trợ: LSTM, XGBoost."
-    
-    # Giới hạn số ngày dự đoán
-    if prediction_days > 180:
-        prediction_days = 180
-        print("Giới hạn số ngày dự đoán xuống 180 ngày")
-    
     try:
-        # Lấy dữ liệu lịch sử
-        historical_data, warning = get_historical_data_for_prediction(symbol)
-        if historical_data is None:
-            return None, "Không thể lấy dữ liệu lịch sử cho mã chứng khoán này."
         
-        is_sample_data = warning and "dữ liệu mẫu" in warning
-        
-        # Lấy instance của StockPredictor
-        predictor = get_stock_predictor()
-        
-        # Chuẩn bị dữ liệu
-        prepared_data = predictor.prepare_data(historical_data)
-        
-        # Huấn luyện mô hình
-        if model_type == "lstm":
-            model_info = predictor.build_lstm_model(prepared_data, symbol)
-            predicted_prices, error = predictor.predict_lstm(prepared_data, prediction_days)
-        else:  # xgboost
-            model_info = predictor.build_xgboost_model(prepared_data, symbol)
-            predicted_prices, error = predictor.predict_xgboost(prepared_data, prediction_days)
-        
-        if error:
-            return None, error
-        
-        # Tạo ngày dự đoán trong tương lai
-        last_date = historical_data['time'].iloc[-1]
-        future_dates = pd.date_range(start=last_date + pd.Timedelta(days=1), periods=prediction_days)
-        
-        # Tạo DataFrame kết quả
-        prediction_df = pd.DataFrame({
-            'date': future_dates,
-            'predicted_price': predicted_prices
-        })
-        
-        # Tạo biểu đồ
-        chart = predictor.create_prediction_chart(
-            historical_data, predicted_prices, future_dates, symbol, model_type
-        )
-        
-        # Kết quả trả về
-        result = {
-            "historical_data": historical_data.tail(60),
-            "prediction_data": prediction_df,
-            "chart": chart,
-            "metrics": model_info['metrics'],
-            "is_sample_data": is_sample_data
-        }
-        
-        return result, None
-        
+        rlt1 = []
+        rlt2 = []
+        rlt1 = train_with_XGBoost(ticker=symbol)
+        rlt2 = train_LSTM(ticker=symbol)
+        result1_df = pd.DataFrame([rlt1]) if not isinstance(rlt1, dict) else pd.DataFrame(rlt1, index=[0])
+        result2_df = pd.DataFrame([rlt2]) if not isinstance(rlt2, dict) else pd.DataFrame(rlt2, index=[0])
+
+        if prediction_type == "price":
+            if(result1_df["r2"].iloc[0] >= result2_df["r2"].iloc[0]):
+                print(f"XGBoost có độ chính xác cao hơn LSTM với r2 = {result1_df["r2"].iloc[0]} còn LSTM là {result2_df["r2"].iloc[0]}") 
+                return {
+                    "model": "XGBoost",
+                    "r2": result1_df["r2"].iloc[0],
+                    "rmse": result1_df["rmse"].iloc[0],
+                    "predicted_price": result1_df["predicted_price"].iloc[0]
+                }, None
+            else:
+                print(f"LSTM có độ chính xác cao hơn XGBoost với r2 = {result2_df["r2"].iloc[0]} còn XGBoost là {result1_df["r2"].iloc[0]}")
+                return {
+                    "model": "LSTM",
+                    "r2": result2_df["r2"].iloc[0],
+                    "rmse": result2_df["rmse"].iloc[0],
+                    "predicted_price": result2_df["predicted_price"].iloc[0]
+                }, None
+        else:
+            if(result1_df["direction_accuracy"].iloc[0] >= result2_df["direction_accuracy"].iloc[0]):
+                print(f"XGBoost có độ chính xác cao hơn LSTM với độ chính xác = {result1_df["direction_accuracy"].iloc[0]} còn LSTM là {result2_df["direction_accuracy"].iloc[0]}")
+                return {
+                    "model": "XGBoost",
+                    "direction_accuracy": result1_df["direction_accuracy"].iloc[0],
+                    "predicted_trend": result1_df["trend"].iloc[0]
+                }, None
+            else:
+                print(f"LSTM có độ chính xác cao hơn XGBoost với độ chính xác = {result2_df["direction_accuracy"].iloc[0]} còn XGBoost là {result1_df["direction_accuracy"].iloc[0]}")
+                return {
+                    "model": "LSTM",
+                    "direction_accuracy": result2_df["direction_accuracy"].iloc[0],
+                    "predicted_trend": result2_df["trend"].iloc[0]
+                }, None
     except Exception as e:
         import traceback
         traceback.print_exc()

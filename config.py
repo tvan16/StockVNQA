@@ -14,8 +14,8 @@ EXAMPLE_QUESTIONS = [
     "Báo cáo tài chính của FPT quý gần nhất",
     "Liệt kê các công ty trong ngành ngân hàng",
     "Ai là cổ đông lớn nhất của VNM?",
-    "Dự đoán giá cổ phiếu VNM trong 30 ngày tới sử dụng mô hình LSTM",
-    "Dự đoán giá FPT trong 2 tuần tới sử dụng XGBoost"
+    "Dự đoán giá cổ phiếu VNM ",
+    "Dự đoán xu hướng giá GH3"
 ]
 
 # Thông tin về ứng dụng
@@ -32,21 +32,4 @@ Bạn có thể hỏi về:
 Dữ liệu được cung cấp bởi thư viện [vnstock](https://github.com/thinh-vu/vnstock).
 """
 
-# Cấu hình mô hình dự đoán
-PREDICTION_CONFIG = {
-    "lstm": {
-        "units": 50,
-        "dropout": 0.2,
-        "epochs": 50,
-        "batch_size": 32
-    },
-    "xgboost": {
-        "n_estimators": 1000,
-        "learning_rate": 0.01,
-        "max_depth": 7,
-        "subsample": 0.8,
-        "colsample_bytree": 0.8,
-        "objective": 'reg:squarederror',
-        "random_state": 42
-    }
-}
+
