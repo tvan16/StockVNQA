@@ -140,9 +140,6 @@ Sử dụng theo giấy phép [MIT](https://opensource.org/licenses/MIT) – mi�
 **StockVNQA Team** – Giải pháp thông minh cho nhà đầu tư Việt Nam 🇻🇳
 Hãy ⭐ star nếu bạn thấy dự án hữu ích!
 
-<p align="center">
-  <img src="https://img.shields.io/github/stars/your-repo?style=social" alt="GitHub stars">
-</p>
 ```
 
 
