@@ -145,12 +145,4 @@ Hãy ⭐ star nếu bạn thấy dự án hữu ích!
 </p>
 ```
 
----
 
-🎁 **Gợi ý mở rộng (nếu muốn đẹp hơn nữa):**
-
-* Thêm ảnh GIF minh họa luồng truy vấn → phản hồi → biểu đồ
-* Thêm các badges CI/CD (nếu dùng GitHub Actions)
-* Gắn link demo (nếu deploy trên Streamlit Cloud hoặc Hugging Face Spaces)
-
-Nếu bạn cần mình **gắn badge repo thật**, hoặc **ảnh minh họa đẹp**, chỉ cần gửi tên GitHub repo, mình hỗ trợ ngay.
