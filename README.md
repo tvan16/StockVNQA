@@ -1,128 +1,156 @@
-Dưới đây là bản `README.md` được định dạng đẹp, chuyên nghiệp và đầy đủ thông tin cho dự án **StockVNQA**:
 
-```markdown
-# 📈 StockVNQA - Hệ Thống Truy Vấn và Dự Đoán Chứng Khoán Việt Nam 🇻🇳
+<h1 align="center">📈 StockVNQA</h1>
+<p align="center">
+  <em>Hệ thống trí tuệ nhân tạo truy vấn & dự đoán chứng khoán Việt Nam 🇻🇳</em><br/>
+  <strong>Python 3.9+ | Streamlit | OpenAI API | vnstock</strong>
+</p>
 
-> Ứng dụng trí tuệ nhân tạo giúp bạn truy vấn và dự đoán thị trường chứng khoán Việt Nam bằng **ngôn ngữ tự nhiên**.
-
----
-
-## 🔍 Tổng Quan
-
-**StockVNQA** là một ứng dụng Web sử dụng AI để:
-- Truy vấn dữ liệu chứng khoán Việt Nam bằng **tiếng Việt tự nhiên**
-- Cung cấp **thông tin thị trường** chuyên sâu
-- Dự đoán **giá cổ phiếu** tương lai với các mô hình học máy mạnh mẽ
-
-Ứng dụng được xây dựng trên nền tảng **Python**, sử dụng **Streamlit** để tạo giao diện trực quan, kết hợp với các công nghệ AI và dữ liệu tài chính thực tế từ **vnstock**.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.9+-blue?logo=python">
+  <img src="https://img.shields.io/badge/Streamlit-1.20+-brightgreen?logo=streamlit">
+  <img src="https://img.shields.io/badge/OpenAI-API-blueviolet?logo=openai">
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg">
+</p>
 
 ---
 
-## ✨ Tính Năng Chính
+## 🧠 Giới thiệu
 
-- 🗣️ **Truy vấn tiếng Việt tự nhiên**: Hỏi về cổ phiếu, ngành nghề, xu hướng thị trường,...
-- 📂 **Dữ liệu phong phú**:
-  - Danh sách cổ phiếu theo sàn, ngành
-  - Giá cổ phiếu theo thời gian
-  - Thông tin công ty, cổ đông, ban lãnh đạo
-  - Báo cáo tài chính, chỉ số tài chính
-- 📈 **Dự đoán giá cổ phiếu**:
-  - **LSTM**: Mô hình RNN cho chuỗi thời gian
-  - **XGBoost**: Mô hình cây quyết định tăng cường
-- 📊 **Phân tích trực quan**:
-  - Biểu đồ giá, xu hướng
-  - Bảng dữ liệu tương tác
-  - Chỉ số đánh giá mô hình
+**StockVNQA** là một ứng dụng Web trí tuệ nhân tạo giúp bạn:
+- 📊 **Truy vấn thị trường chứng khoán Việt Nam** bằng **ngôn ngữ tiếng Việt tự nhiên**
+- 🔮 **Dự đoán giá cổ phiếu** trong tương lai
+- 📈 **Hiển thị trực quan** với biểu đồ, bảng dữ liệu, và đánh giá mô hình
+
+Ứng dụng sử dụng các mô hình học máy tiên tiến như **LSTM** và **XGBoost**, tích hợp với dữ liệu tài chính từ thư viện **vnstock**.
 
 ---
 
-## 🛠️ Công Nghệ Sử Dụng
+## 🚀 Tính năng nổi bật
 
-| Thành phần | Công nghệ |
-|------------|-----------|
-| Giao diện  | `Streamlit`, `components.py` |
-| Truy vấn & AI | `OpenAI API`, `vnstock`, `Pandas`, `NumPy`, `Scikit-learn` |
-| Dự đoán giá | `TensorFlow/Keras (LSTM)`, `XGBoost` |
-| Trực quan hóa | `Matplotlib`, `Plotly` |
+✅ Truy vấn bằng tiếng Việt (GPT hỗ trợ):
+> "Cho tôi thông tin giá cổ phiếu FPT trong 30 ngày qua"
+
+✅ Dự đoán giá cổ phiếu:
+> "Dự đoán giá cổ phiếu VNM trong ngày mai"
+
+✅ Hỗ trợ dữ liệu:
+- Giá cổ phiếu, khối lượng
+- Báo cáo tài chính, thông tin công ty
+- Danh sách cổ phiếu theo sàn (HOSE, HNX, UPCOM)
+- Cổ đông lớn, ban lãnh đạo
+
+✅ Mô hình dự đoán:
+- 🧠 **LSTM (TensorFlow/Keras)** – mạnh cho chuỗi thời gian
+- 🚀 **XGBoost** – mô hình cây quyết định tăng cường
+
+✅ Trực quan hóa:
+- Biểu đồ tương tác 📊
+- Bảng dữ liệu có lọc 🔍
+- Chỉ số RMSE/MAPE đánh giá mô hình 📐
 
 ---
 
-## 🏗️ Kiến Trúc Hệ Thống
+## 🛠️ Công nghệ sử dụng
+
+| Thành phần          | Công nghệ                                |
+|---------------------|-------------------------------------------|
+| Giao diện người dùng| `Streamlit`                               |
+| NLP & AI            | `OpenAI API`, `vnstock`, `Pandas`, `NumPy`|
+| Mô hình học máy     | `TensorFlow`, `Keras`, `XGBoost`, `sklearn`|
+| Biểu đồ & Trực quan | `Matplotlib`, `Plotly`                    |
+
+---
+
+## 🏗️ Kiến trúc thư mục
 
 ```
 
 StockVNQA/
 ├── api/
 │   ├── openai\_api.py          # Tương tác với OpenAI
-│   ├── vnstock\_api.py         # Kết nối dữ liệu từ vnstock
-│   └── test.ipynb             # Notebook kiểm thử API
+│   ├── vnstock\_api.py         # Truy xuất dữ liệu từ vnstock
+│   └── test.ipynb             # Notebook kiểm thử
 ├── models/
-│   ├── predictors.py          # Mô hình dự đoán LSTM & XGBoost
+│   ├── predictors.py          # Mô hình LSTM và XGBoost
 │   └── schemas.py             # Schema cho function call
 ├── services/
-│   ├── data\_service.py        # Xử lý dữ liệu, truy vấn
-│   └── prediction\_service.py  # Dịch vụ dự đoán
+│   ├── data\_service.py        # Xử lý dữ liệu & truy vấn
+│   └── prediction\_service.py  # Dự đoán cổ phiếu
 └── ui/
-└── components.py          # Giao diện người dùng (Streamlit)
+└── components.py          # Thành phần giao diện Streamlit
 
 ````
 
 ---
 
-## 🚀 Hướng Dẫn Sử Dụng
+## ⚙️ Cài đặt & chạy
 
-1. **Cài đặt môi trường**:
+### 1️⃣ Cài đặt thư viện
 
 ```bash
 pip install -r requirements.txt
 ````
 
-2. **Thiết lập API Key**:
+### 2️⃣ Thêm OpenAI API Key
 
-   * Thêm `OpenAI API Key` vào biến môi trường:
-     `export OPENAI_API_KEY=your-key`
-   * Hoặc nhập trực tiếp trong giao diện ứng dụng
+* Qua biến môi trường:
 
-3. **Khởi chạy ứng dụng**:
+```bash
+export OPENAI_API_KEY="your-api-key"
+```
+
+* Hoặc nhập trực tiếp trong giao diện Streamlit khi ứng dụng yêu cầu
+
+### 3️⃣ Khởi chạy ứng dụng
 
 ```bash
 streamlit run app.py
 ```
 
-4. **Truy vấn thông tin**:
-
-* Ví dụ:
-
-  > "Cho tôi thông tin về giá cổ phiếu FPT trong 30 ngày qua"
-
-5. **Dự đoán giá cổ phiếu**:
-
-* Ví dụ:
-
-  > "Dự đoán giá cổ phiếu VNM trong ngày mai"
-
 ---
 
-## ⚠️ Lưu Ý
+## 💬 Ví dụ câu hỏi
 
-> **StockVNQA** cung cấp thông tin và dự đoán mang tính **tham khảo**. Không nên được xem là lời khuyên đầu tư chính thức.
-> Giá cổ phiếu chịu ảnh hưởng bởi nhiều yếu tố ngoài mô hình như: tin tức, tâm lý thị trường, chính sách vĩ mô,...
-
----
-
-## 📜 Giấy Phép
-
-© 2025. Dự án được phát triển cho mục đích **nghiên cứu và giáo dục**.
-
----
-
-## 👨‍💻 Phát Triển Bởi
-
-**StockVNQA Team** - Giải pháp AI thông minh cho nhà đầu tư Việt Nam 🇻🇳
-
+```text
+"Giá cổ phiếu VNM hôm qua?"
+"Thông tin công ty HPG"
+"Báo cáo tài chính MWG quý 1/2024"
+"Dự đoán giá cổ phiếu FPT trong 3 ngày tới"
 ```
 
 ---
 
-Bạn có thể lưu nội dung trên vào file `README.md` trong thư mục gốc của dự án để hiển thị đẹp trên GitHub hoặc bất kỳ nền tảng chia sẻ mã nguồn nào. Nếu bạn muốn thêm badge GitHub Actions, PyPI hoặc license thì mình có thể bổ sung theo yêu cầu.
+## ⚠️ Lưu ý
+
+> 📢 **StockVNQA chỉ mang tính nghiên cứu và giáo dục.**
+> Mọi dự đoán giá cổ phiếu chỉ để **tham khảo**, không phải khuyến nghị đầu tư.
+> Thị trường có thể bị ảnh hưởng bởi: tin tức, tâm lý nhà đầu tư, sự kiện chính trị/vĩ mô.
+
+---
+
+## 📄 Giấy phép
+
+Bản quyền © 2025 bởi nhóm phát triển **StockVNQA**.
+Sử dụng theo giấy phép [MIT](https://opensource.org/licenses/MIT) – miễn phí cho mục đích cá nhân, học thuật và nghiên cứu.
+
+---
+
+## 👨‍💻 Nhóm phát triển
+
+**StockVNQA Team** – Giải pháp thông minh cho nhà đầu tư Việt Nam 🇻🇳
+Hãy ⭐ star nếu bạn thấy dự án hữu ích!
+
+<p align="center">
+  <img src="https://img.shields.io/github/stars/your-repo?style=social" alt="GitHub stars">
+</p>
 ```
+
+---
+
+🎁 **Gợi ý mở rộng (nếu muốn đẹp hơn nữa):**
+
+* Thêm ảnh GIF minh họa luồng truy vấn → phản hồi → biểu đồ
+* Thêm các badges CI/CD (nếu dùng GitHub Actions)
+* Gắn link demo (nếu deploy trên Streamlit Cloud hoặc Hugging Face Spaces)
+
+Nếu bạn cần mình **gắn badge repo thật**, hoặc **ảnh minh họa đẹp**, chỉ cần gửi tên GitHub repo, mình hỗ trợ ngay.
