@@ -56,7 +56,7 @@
 |---------------------|-------------------------------------------|
 | Giao diện người dùng| `Streamlit`                               |
 | NLP & AI            | `OpenAI API`, `vnstock`, `Pandas`, `NumPy`|
-| Mô hình học máy     | `TensorFlow`, `Keras`, `XGBoost`, `sklearn`, 'LSTM'|
+| Mô hình học máy     | `TensorFlow`, `Keras`, `XGBoost`, `sklearn`, `LSTM`|
 | Biểu đồ & Trực quan | `Matplotlib`, `Plotly`                    |
 
 ---
